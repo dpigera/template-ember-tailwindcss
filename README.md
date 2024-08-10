@@ -4,6 +4,7 @@ An empty project running:
 
 - Ember CLI 5.8.1
 - Tailwind CSS 3.4.6
+- Ember Pre Render + FastBoot
 
 Includes overrides to enable Roboto font-weights to appear correctly in both development and production environments
 

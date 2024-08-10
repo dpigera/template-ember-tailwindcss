@@ -3,14 +3,18 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
-  const app = new EmberApp(defaults, {});
+  const app = new EmberApp(defaults, {
+    prember: {
+      urls: ['/'],
+    },
+  });
 
   app.import('vendor/netlify.toml', {
     destDir: '/',
   });
 
   const { Webpack } = require('@embroider/webpack');
-  return require('@embroider/compat').compatBuild(app, Webpack, {
+  const compiledApp = require('@embroider/compat').compatBuild(app, Webpack, {
     skipBabel: [
       {
         package: 'qunit',
@@ -38,4 +42,5 @@ module.exports = function (defaults) {
       },
     },
   });
+  return require('prember').prerender(app, compiledApp);
 };
